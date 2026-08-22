@@ -1,0 +1,43 @@
+{
+  "jobName": "support-chatbot-evaluation-v2",
+  "jobDescription": "Evaluation of the support chatbot against the project test dataset.",
+  "roleArn": "arn:aws:iam::317073769210:role/bedrock-eval-role",
+  "applicationType": "ModelEvaluation",
+  "evaluationConfig": {
+    "automated": {
+      "datasetMetricConfigs": [
+        {
+          "taskType": "General",
+          "dataset": {
+            "name": "support-chatbot-tests",
+            "datasetLocation": {
+              "s3Uri": "s3://udacity-agentic-engineer-c1-eval-317073769210/output_eval_dataset.jsonl"
+            }
+          },
+          "metricNames": [
+            "Builtin.Correctness"
+          ]
+        }
+      ],
+      "evaluatorModelConfig": {
+        "bedrockEvaluatorModels": [
+          {
+            "modelIdentifier": "amazon.nova-pro-v1:0"
+          }
+        ]
+      }
+    }
+  },
+  "inferenceConfig": {
+    "models": [
+      {
+        "bedrockModel": {
+          "modelIdentifier": "amazon.nova-pro-v1:0"
+        }
+      }
+    ]
+  },
+  "outputDataConfig": {
+    "s3Uri": "s3://udacity-agentic-engineer-c1-eval-317073769210/evaluation-results/"
+  }
+}

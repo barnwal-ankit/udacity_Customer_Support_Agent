@@ -1,0 +1,390 @@
+{
+    "jobName": "",
+    "jobDescription": "",
+    "clientRequestToken": "",
+    "roleArn": "",
+    "customerEncryptionKeyId": "",
+    "jobTags": [
+        {
+            "key": "",
+            "value": ""
+        }
+    ],
+    "applicationType": "ModelEvaluation",
+    "evaluationConfig": {
+        "automated": {
+            "datasetMetricConfigs": [
+                {
+                    "taskType": "Summarization",
+                    "dataset": {
+                        "name": "",
+                        "datasetLocation": {
+                            "s3Uri": ""
+                        }
+                    },
+                    "metricNames": [
+                        ""
+                    ]
+                }
+            ],
+            "evaluatorModelConfig": {
+                "bedrockEvaluatorModels": [
+                    {
+                        "modelIdentifier": ""
+                    }
+                ]
+            },
+            "customMetricConfig": {
+                "customMetrics": [
+                    {
+                        "customMetricDefinition": {
+                            "name": "",
+                            "instructions": "",
+                            "ratingScale": [
+                                {
+                                    "definition": "",
+                                    "value": {
+                                        "stringValue": "",
+                                        "floatValue": 0.0
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "evaluatorModelConfig": {
+                    "bedrockEvaluatorModels": [
+                        {
+                            "modelIdentifier": ""
+                        }
+                    ]
+                }
+            }
+        },
+        "human": {
+            "humanWorkflowConfig": {
+                "flowDefinitionArn": "",
+                "instructions": ""
+            },
+            "customMetrics": [
+                {
+                    "name": "",
+                    "description": "",
+                    "ratingMethod": ""
+                }
+            ],
+            "datasetMetricConfigs": [
+                {
+                    "taskType": "Generation",
+                    "dataset": {
+                        "name": "",
+                        "datasetLocation": {
+                            "s3Uri": ""
+                        }
+                    },
+                    "metricNames": [
+                        ""
+                    ]
+                }
+            ]
+        }
+    },
+    "inferenceConfig": {
+        "models": [
+            {
+                "bedrockModel": {
+                    "modelIdentifier": "",
+                    "inferenceParams": "",
+                    "performanceConfig": {
+                        "latency": "standard"
+                    }
+                },
+                "precomputedInferenceSource": {
+                    "inferenceSourceIdentifier": ""
+                }
+            }
+        ],
+        "ragConfigs": [
+            {
+                "knowledgeBaseConfig": {
+                    "retrieveConfig": {
+                        "knowledgeBaseId": "",
+                        "knowledgeBaseRetrievalConfiguration": {
+                            "vectorSearchConfiguration": {
+                                "numberOfResults": 0,
+                                "overrideSearchType": "SEMANTIC",
+                                "filter": {
+                                    "equals": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "notEquals": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "greaterThan": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "greaterThanOrEquals": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "lessThan": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "lessThanOrEquals": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "in": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "notIn": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "startsWith": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "listContains": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "stringContains": {
+                                        "key": "",
+                                        "value": {}
+                                    },
+                                    "andAll": [
+                                        {}
+                                    ],
+                                    "orAll": [
+                                        {}
+                                    ]
+                                },
+                                "implicitFilterConfiguration": {
+                                    "metadataAttributes": [
+                                        {
+                                            "key": "",
+                                            "type": "STRING",
+                                            "description": ""
+                                        }
+                                    ],
+                                    "modelArn": ""
+                                },
+                                "rerankingConfiguration": {
+                                    "type": "BEDROCK_RERANKING_MODEL",
+                                    "bedrockRerankingConfiguration": {
+                                        "modelConfiguration": {
+                                            "modelArn": "",
+                                            "additionalModelRequestFields": {
+                                                "KeyName": {}
+                                            }
+                                        },
+                                        "numberOfRerankedResults": 0,
+                                        "metadataConfiguration": {
+                                            "selectionMode": "SELECTIVE",
+                                            "selectiveModeConfiguration": {
+                                                "fieldsToInclude": [
+                                                    {
+                                                        "fieldName": ""
+                                                    }
+                                                ],
+                                                "fieldsToExclude": [
+                                                    {
+                                                        "fieldName": ""
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "retrieveAndGenerateConfig": {
+                        "type": "EXTERNAL_SOURCES",
+                        "knowledgeBaseConfiguration": {
+                            "knowledgeBaseId": "",
+                            "modelArn": "",
+                            "retrievalConfiguration": {
+                                "vectorSearchConfiguration": {
+                                    "numberOfResults": 0,
+                                    "overrideSearchType": "HYBRID",
+                                    "filter": {
+                                        "equals": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "notEquals": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "greaterThan": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "greaterThanOrEquals": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "lessThan": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "lessThanOrEquals": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "in": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "notIn": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "startsWith": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "listContains": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "stringContains": {
+                                            "key": "",
+                                            "value": {}
+                                        },
+                                        "andAll": [
+                                            {}
+                                        ],
+                                        "orAll": [
+                                            {}
+                                        ]
+                                    },
+                                    "implicitFilterConfiguration": {
+                                        "metadataAttributes": [
+                                            {
+                                                "key": "",
+                                                "type": "STRING_LIST",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "modelArn": ""
+                                    },
+                                    "rerankingConfiguration": {
+                                        "type": "BEDROCK_RERANKING_MODEL",
+                                        "bedrockRerankingConfiguration": {
+                                            "modelConfiguration": {
+                                                "modelArn": "",
+                                                "additionalModelRequestFields": {
+                                                    "KeyName": {}
+                                                }
+                                            },
+                                            "numberOfRerankedResults": 0,
+                                            "metadataConfiguration": {
+                                                "selectionMode": "ALL",
+                                                "selectiveModeConfiguration": {
+                                                    "fieldsToInclude": [
+                                                        {
+                                                            "fieldName": ""
+                                                        }
+                                                    ],
+                                                    "fieldsToExclude": [
+                                                        {
+                                                            "fieldName": ""
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "generationConfiguration": {
+                                "promptTemplate": {
+                                    "textPromptTemplate": ""
+                                },
+                                "guardrailConfiguration": {
+                                    "guardrailId": "",
+                                    "guardrailVersion": ""
+                                },
+                                "kbInferenceConfig": {
+                                    "textInferenceConfig": {
+                                        "temperature": 0.0,
+                                        "topP": 0.0,
+                                        "maxTokens": 0,
+                                        "stopSequences": [
+                                            ""
+                                        ]
+                                    }
+                                },
+                                "additionalModelRequestFields": {
+                                    "KeyName": {}
+                                }
+                            },
+                            "orchestrationConfiguration": {
+                                "queryTransformationConfiguration": {
+                                    "type": "QUERY_DECOMPOSITION"
+                                }
+                            }
+                        },
+                        "externalSourcesConfiguration": {
+                            "modelArn": "",
+                            "sources": [
+                                {
+                                    "sourceType": "BYTE_CONTENT",
+                                    "s3Location": {
+                                        "uri": ""
+                                    },
+                                    "byteContent": {
+                                        "identifier": "",
+                                        "contentType": "",
+                                        "data": null
+                                    }
+                                }
+                            ],
+                            "generationConfiguration": {
+                                "promptTemplate": {
+                                    "textPromptTemplate": ""
+                                },
+                                "guardrailConfiguration": {
+                                    "guardrailId": "",
+                                    "guardrailVersion": ""
+                                },
+                                "kbInferenceConfig": {
+                                    "textInferenceConfig": {
+                                        "temperature": 0.0,
+                                        "topP": 0.0,
+                                        "maxTokens": 0,
+                                        "stopSequences": [
+                                            ""
+                                        ]
+                                    }
+                                },
+                                "additionalModelRequestFields": {
+                                    "KeyName": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "precomputedRagSourceConfig": {
+                    "retrieveSourceConfig": {
+                        "ragSourceIdentifier": ""
+                    },
+                    "retrieveAndGenerateSourceConfig": {
+                        "ragSourceIdentifier": ""
+                    }
+                }
+            }
+        ]
+    },
+    "outputDataConfig": {
+        "s3Uri": ""
+    }
+}
