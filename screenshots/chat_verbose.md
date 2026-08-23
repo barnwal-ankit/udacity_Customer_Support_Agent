@@ -128,7 +128,7 @@ thinking
 >
 ```
 
-## Highlight 1 — Tool Call
+## Tool Call
 
 > **[tool call] `bugreports___create_bug_report`**
 
@@ -146,7 +146,7 @@ thinking
 [event] {"contentBlockStart": {"contentBlockIndex": 0, "start": {"toolResult": {"toolUseId": "tooluse_GTWOVfvG9aWqHpKuMGkCYR", "status": "success"}}}}
 ```
 
-## Highlight 2 — Event
+## TicketId
 
 > **[event] `contentBlockDelta` containing the tool result**
 
