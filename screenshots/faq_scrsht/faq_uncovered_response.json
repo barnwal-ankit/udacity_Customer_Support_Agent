@@ -1,0 +1,359 @@
+{
+  "ClassifyCustomerMessage": {
+    "inputTraces": [
+      {
+        "nodeInputTrace": {
+          "fields": [
+            {
+              "content": {
+                "document": "Can you tell me the current weather in Delhi?"
+              },
+              "nodeInputName": "input",
+              "source": {
+                "expression": "$.data",
+                "nodeName": "FlowInputNode",
+                "outputFieldName": "document"
+              },
+              "type": "STRING"
+            }
+          ],
+          "nodeName": "ClassifyCustomerMessage",
+          "timestamp": "2026-08-25T17:55:03.931Z"
+        }
+      }
+    ],
+    "outputTraces": [
+      {
+        "nodeOutputTrace": {
+          "fields": [
+            {
+              "content": {
+                "document": "OTHER_REQUEST"
+              },
+              "next": [
+                {
+                  "inputFieldName": "category",
+                  "nodeName": "ConditionNode_1"
+                }
+              ],
+              "nodeOutputName": "modelCompletion",
+              "type": "STRING"
+            }
+          ],
+          "nodeName": "ClassifyCustomerMessage",
+          "timestamp": "2026-08-25T17:55:04.282Z"
+        }
+      }
+    ],
+    "conditionTraces": [],
+    "dependencyTraces": [],
+    "actionTraces": [
+      {
+        "nodeActionTrace": {
+          "nodeName": "ClassifyCustomerMessage",
+          "operationName": "Converse",
+          "operationRequest": {
+            "requestMetadata": {},
+            "promptVariables": {},
+            "system": [],
+            "additionalModelRequestFields": null,
+            "modelId": "amazon.nova-pro-v1:0",
+            "inferenceConfig": {
+              "maxTokens": 512,
+              "temperature": 0.699999988079071,
+              "topP": 1,
+              "stopSequences": []
+            },
+            "additionalModelResponseFieldPaths": [],
+            "messages": [
+              {
+                "content": [
+                  {
+                    "type": "TEXT",
+                    "text": "You are a customer support message classifier.\n\nClassify the customer's message into exactly ONE of these categories:\n\nBUG_REPORT\nPLATFORM_QUESTION\nOTHER_REQUEST\n\nRules:\n- BUG_REPORT: The customer is reporting a problem, error, malfunction, or unexpected behavior with the product/service.\n- PLATFORM_QUESTION: The customer is asking about the shop/platform, such as delivery, returns, refunds, orders, products, or other FAQ-related information.\n- OTHER_REQUEST: Anything that is not a bug report or a platform/FAQ question.\n\nReturn ONLY the category name.\nDo not add explanations, punctuation, or additional text.\n\nCustomer message:\nCan you tell me the current weather in Delhi?"
+                  }
+                ],
+                "role": "user"
+              }
+            ]
+          },
+          "operationResponse": {
+            "output": {
+              "message": {
+                "content": [
+                  {
+                    "type": "TEXT",
+                    "text": "OTHER_REQUEST"
+                  }
+                ],
+                "role": "assistant"
+              },
+              "type": "MESSAGE"
+            },
+            "stopReason": "end_turn",
+            "sdkHttpResponse": {
+              "statusText": "OK",
+              "statusCode": 200,
+              "successful": true
+            },
+            "responseMetadata": {
+              "metadata": {
+                "Connection": "keep-alive",
+                "x-amzn-RequestId": "0ce91dfe-b612-470d-9103-2158b706ba05",
+                "AWS_REQUEST_ID": "0ce91dfe-b612-470d-9103-2158b706ba05",
+                "Content-Length": "216",
+                "Date": "Tue, 25 Aug 2026 17:55:04 GMT",
+                "Content-Type": "application/json"
+              }
+            },
+            "metrics": {
+              "latencyMs": 312
+            },
+            "usage": {
+              "inputTokens": 148,
+              "outputTokens": 4,
+              "totalTokens": 152,
+              "cacheDetails": []
+            }
+          },
+          "requestId": "0ce91dfe-b612-470d-9103-2158b706ba05",
+          "serviceName": "bedrock",
+          "timestamp": "2026-08-25T17:55:04.282Z"
+        }
+      }
+    ]
+  },
+  "FlowInputNode": {
+    "inputTraces": [],
+    "outputTraces": [
+      {
+        "nodeOutputTrace": {
+          "fields": [
+            {
+              "content": {
+                "document": "Can you tell me the current weather in Delhi?"
+              },
+              "next": [
+                {
+                  "inputFieldName": "customer_message",
+                  "nodeName": "FAQPrompt"
+                },
+                {
+                  "inputFieldName": "input",
+                  "nodeName": "ClassifyCustomerMessage"
+                },
+                {
+                  "inputFieldName": "customer_message",
+                  "nodeName": "BugReportPrompt"
+                },
+                {
+                  "inputFieldName": "customer_message",
+                  "nodeName": "OtherRequestPrompt"
+                }
+              ],
+              "nodeOutputName": "document",
+              "type": "STRING"
+            }
+          ],
+          "nodeName": "FlowInputNode",
+          "timestamp": "2026-08-25T17:55:03.931Z"
+        }
+      }
+    ],
+    "conditionTraces": [],
+    "dependencyTraces": [],
+    "actionTraces": []
+  },
+  "ConditionNode_1": {
+    "inputTraces": [
+      {
+        "nodeInputTrace": {
+          "fields": [
+            {
+              "content": {
+                "document": "OTHER_REQUEST"
+              },
+              "nodeInputName": "category",
+              "source": {
+                "expression": "$.data",
+                "nodeName": "ClassifyCustomerMessage",
+                "outputFieldName": "modelCompletion"
+              },
+              "type": "STRING"
+            }
+          ],
+          "nodeName": "ConditionNode_1",
+          "timestamp": "2026-08-25T17:55:04.282Z"
+        }
+      }
+    ],
+    "outputTraces": [],
+    "conditionTraces": [
+      {
+        "conditionNodeResultTrace": {
+          "nodeName": "ConditionNode_1",
+          "satisfiedConditions": [
+            {
+              "conditionName": "default"
+            }
+          ],
+          "timestamp": "2026-08-25T17:55:04.283Z"
+        }
+      }
+    ],
+    "dependencyTraces": [],
+    "actionTraces": []
+  },
+  "OtherRequestPrompt": {
+    "inputTraces": [
+      {
+        "nodeInputTrace": {
+          "fields": [
+            {
+              "content": {
+                "document": "Can you tell me the current weather in Delhi?"
+              },
+              "nodeInputName": "customer_message",
+              "source": {
+                "expression": "$.data",
+                "nodeName": "FlowInputNode",
+                "outputFieldName": "document"
+              },
+              "type": "STRING"
+            }
+          ],
+          "nodeName": "OtherRequestPrompt",
+          "timestamp": "2026-08-25T17:55:04.283Z"
+        }
+      }
+    ],
+    "outputTraces": [
+      {
+        "nodeOutputTrace": {
+          "fields": [
+            {
+              "content": {
+                "document": "Certainly! Here's a polite response to the customer:\n\n---\n\nHello,\n\nThank you for reaching out to us.\n\nFor inquiries about current weather conditions, please contact our human support team. They will be able to provide you with the most accurate and up-to-date information.\n\nYou can reach them at 1-800-555-0199, available Monday through Friday.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \nCustomer Support Team"
+              },
+              "next": [
+                {
+                  "inputFieldName": "document",
+                  "nodeName": "OtherRequestOutput"
+                }
+              ],
+              "nodeOutputName": "modelCompletion",
+              "type": "STRING"
+            }
+          ],
+          "nodeName": "OtherRequestPrompt",
+          "timestamp": "2026-08-25T17:55:06.645Z"
+        }
+      }
+    ],
+    "conditionTraces": [],
+    "dependencyTraces": [],
+    "actionTraces": [
+      {
+        "nodeActionTrace": {
+          "nodeName": "OtherRequestPrompt",
+          "operationName": "Converse",
+          "operationRequest": {
+            "requestMetadata": {},
+            "promptVariables": {},
+            "system": [],
+            "additionalModelRequestFields": null,
+            "modelId": "amazon.nova-pro-v1:0",
+            "inferenceConfig": {
+              "maxTokens": 512,
+              "temperature": 0.699999988079071,
+              "topP": 1,
+              "stopSequences": []
+            },
+            "additionalModelResponseFieldPaths": [],
+            "messages": [
+              {
+                "content": [
+                  {
+                    "type": "TEXT",
+                    "text": "You are handling a customer request that is not a bug report or a platform FAQ question.\n\nCustomer request:\nCan you tell me the current weather in Delhi?\n\nThis request should be handled by human support.\n\nPolitely tell the customer to contact human support at 1-800-555-0199 (Mon-Fri)."
+                  }
+                ],
+                "role": "user"
+              }
+            ]
+          },
+          "operationResponse": {
+            "output": {
+              "message": {
+                "content": [
+                  {
+                    "type": "TEXT",
+                    "text": "Certainly! Here's a polite response to the customer:\n\n---\n\nHello,\n\nThank you for reaching out to us.\n\nFor inquiries about current weather conditions, please contact our human support team. They will be able to provide you with the most accurate and up-to-date information.\n\nYou can reach them at 1-800-555-0199, available Monday through Friday.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \nCustomer Support Team"
+                  }
+                ],
+                "role": "assistant"
+              },
+              "type": "MESSAGE"
+            },
+            "stopReason": "end_turn",
+            "sdkHttpResponse": {
+              "statusText": "OK",
+              "statusCode": 200,
+              "successful": true
+            },
+            "responseMetadata": {
+              "metadata": {
+                "Connection": "keep-alive",
+                "x-amzn-RequestId": "d2746ce1-5fe2-45dd-8b78-6c80dc50b3e8",
+                "AWS_REQUEST_ID": "d2746ce1-5fe2-45dd-8b78-6c80dc50b3e8",
+                "Content-Length": "653",
+                "Date": "Tue, 25 Aug 2026 17:55:06 GMT",
+                "Content-Type": "application/json"
+              }
+            },
+            "metrics": {
+              "latencyMs": 2333
+            },
+            "usage": {
+              "inputTokens": 71,
+              "outputTokens": 101,
+              "totalTokens": 172,
+              "cacheDetails": []
+            }
+          },
+          "requestId": "d2746ce1-5fe2-45dd-8b78-6c80dc50b3e8",
+          "serviceName": "bedrock",
+          "timestamp": "2026-08-25T17:55:06.645Z"
+        }
+      }
+    ]
+  },
+  "OtherRequestOutput": {
+    "inputTraces": [
+      {
+        "nodeInputTrace": {
+          "fields": [
+            {
+              "content": {
+                "document": "Certainly! Here's a polite response to the customer:\n\n---\n\nHello,\n\nThank you for reaching out to us.\n\nFor inquiries about current weather conditions, please contact our human support team. They will be able to provide you with the most accurate and up-to-date information.\n\nYou can reach them at 1-800-555-0199, available Monday through Friday.\n\nThank you for your understanding.\n\nBest regards,  \n[Your Name]  \nCustomer Support Team"
+              },
+              "nodeInputName": "document",
+              "source": {
+                "expression": "$.data",
+                "nodeName": "OtherRequestPrompt",
+                "outputFieldName": "modelCompletion"
+              },
+              "type": "STRING"
+            }
+          ],
+          "nodeName": "OtherRequestOutput",
+          "timestamp": "2026-08-25T17:55:06.645Z"
+        }
+      }
+    ],
+    "outputTraces": [],
+    "conditionTraces": [],
+    "dependencyTraces": [],
+    "actionTraces": []
+  }
+}
